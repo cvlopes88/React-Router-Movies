@@ -3,11 +3,11 @@ import axios from 'axios';
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
- 
+ console.log(props.savedList)
   useEffect(() => {
-    const id = props.match.param.id;
-    const moviest = setMovie.find(moviest => `${movie.id}`=== id);
-
+    const id = props.match.params.id;
+    // const movie = props.movies.find(movie => `${movie.id}`=== id);
+  //  console.log(moviest)
 
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
@@ -16,7 +16,7 @@ const Movie = (props) => {
         .get(`http://localhost:5000/api/movies/${id}`)
         .then(response => {
           setMovie(response.data);
-         console.log(setMovie);
+         console.log(response.data);
         })
         .catch(error => {
           console.error(error);
@@ -30,7 +30,7 @@ const Movie = (props) => {
   // }
 
   if (!movie) {
-    return <div>Loading movie information...</div>;
+    return( <div>Loading movie information...</div>);
   }
 
   const { title, director, metascore, stars } = movie;
@@ -47,7 +47,9 @@ const Movie = (props) => {
         </div>
         <h3>Actors</h3>
 
-        {stars.map(star => (
+        {(!stars)
+        ?<div>Loading stars...</div>
+        :stars.map(star => (
           <div key={star} className="movie-star">
             {star}
           </div>

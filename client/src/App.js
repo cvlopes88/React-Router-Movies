@@ -6,8 +6,8 @@ import MovieList from "./Movies/MovieList";
 import Movie from './Movies/Movie';
 
 const App = () => {
-  const [savedList, setSavedList] = useState( [] );
-// const item = Movies.find(item => props.match.param.id === `${item.id}`)
+  const [savedList, setSavedList] = useState([]);
+// const item = Movies.find(item => props.match.param.id === `${movie.id}`)
   const addToSavedList = movie => {
     setSavedList( [...savedList, movie] );
   };
@@ -18,8 +18,8 @@ const App = () => {
       <div>
       <Route exact path="/" component={MovieList} />
       <Route path="/movies/:id" 
-      render={props => <MovieList {...props} move={Movie} /> } />
-
+      render={props => (<Movie {...props} />) } />
+          
       </div>
      
     </div>
